@@ -3,11 +3,12 @@ package dollarsbankModel;
 public class Customer {
 
     // Customer Properties
-    public String name;
-    public String address;
-    public String contactNumber;
-    public String id;
-    public String password;
+    private String name;
+    private String address;
+    private String contactNumber;
+    private String id;
+    private String password;
+
     public SavingsAccount customerSavings;
 
     // Constructor
@@ -24,6 +25,6 @@ public class Customer {
     public void ToString(){
         System.out.println(String.format("Name: %s\nAddress: " +
                 "%s\nContact: %s\nID: %s\nPassword: %s\nBalance: $%s\n",
-                name, address, contactNumber, id, password, customerSavings.balance));
+                name, address, contactNumber, id, password, customerSavings.getBalance()));
     }
 }
