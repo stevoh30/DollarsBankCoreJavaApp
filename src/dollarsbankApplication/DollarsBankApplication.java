@@ -8,10 +8,13 @@ public class DollarsBankApplication {
     public static void main(String[] args){
         Customer c = new Customer("Stephen",
                 "Renton",
-                "50505050",
+                "505-0050",
                 "Stevoh",
                 "Password",
                 500);
+
+        c.customerSavings.deposit(250);
+        c.customerSavings.withdraw(10000);
         c.ToString();
     }
 }

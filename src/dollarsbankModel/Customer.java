@@ -11,7 +11,8 @@ public class Customer {
     public SavingsAccount customerSavings;
 
     // Constructor
-    public Customer(String name, String address, String contactNumber, String id, String password, double amount){
+    public Customer(String name, String address, String contactNumber,
+                    String id, String password, double amount){
         this.name = name;
         this.address = address;
         this.contactNumber = contactNumber;

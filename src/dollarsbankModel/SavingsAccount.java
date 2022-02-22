@@ -13,7 +13,7 @@ public class SavingsAccount extends Account{
     public void deposit(double amount) {
         if(amount > 0){
             balance += amount;
-            System.out.println("Amount of" + amount + " applied to account");
+            System.out.println("Amount of " + amount + " applied to account");
         }
         else{
             System.out.println("A negative amount cannot be deposited");
