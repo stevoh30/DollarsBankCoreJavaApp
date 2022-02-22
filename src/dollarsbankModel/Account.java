@@ -3,11 +3,14 @@ package dollarsbankModel;
 public abstract class Account {
 
     // Properties
-    public double balance;
+    protected double balance;
+    protected Double[] balanceHistory = new Double[5];
+
 
     // Constructor
-    public Account(double balance){
+    public Account(double balance, Double[] balanceHistory){
         this.balance = balance;
+        this.balanceHistory = balanceHistory;
     }
 
     // Getter Method
@@ -19,5 +22,7 @@ public abstract class Account {
     public abstract void deposit(double amount);
 
     public abstract void withdraw(double amount);
+
+    public abstract void transactionHistory(double balanceHistory);
 
 }
