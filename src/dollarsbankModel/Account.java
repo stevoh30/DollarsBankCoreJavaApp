@@ -1,14 +1,15 @@
 package dollarsbankModel;
 
+import java.util.Queue;
+
 public abstract class Account {
 
     // Properties
     protected double balance;
-    protected Double[] balanceHistory = new Double[5];
-
+    protected Queue<String> balanceHistory;
 
     // Constructor
-    public Account(double balance, Double[] balanceHistory){
+    public Account(double balance, Queue<String> balanceHistory){
         this.balance = balance;
         this.balanceHistory = balanceHistory;
     }
@@ -23,6 +24,6 @@ public abstract class Account {
 
     public abstract void withdraw(double amount);
 
-    public abstract void transactionHistory(double balanceHistory);
+    public abstract void transactionHistory();
 
 }
