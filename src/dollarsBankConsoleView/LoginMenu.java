@@ -3,10 +3,11 @@ package dollarsBankConsoleView;
 
 import java.util.Arrays;
 import java.util.Scanner;
+import dollarsBankConsoleView.LoginPage;
 
 public class LoginMenu {
-    public int login_page(){
 
+    public int welcome_page(){
         //initialize menu
         int[] login_menu_number = new int[]{1,2, 3};
         String[] login_menu = new String[]{"Create New Account", "Login", "Exit"};
@@ -28,14 +29,22 @@ public class LoginMenu {
         boolean check_number = result > -1 ;
 
         if(check_number){
-            if(chosen_number == 3){
-                System.out.println("Thank you for choosing DollarsBank, goodbye!");
-                System.exit(0);
+            //if user selected 1 or 2 at the menu:
+            switch (chosen_number) {
+                case 1 ->
+                        //linked to create account page;
+                        System.out.println("Creating a new account here::::::: ");
+                case 2 -> {
+                    //execute LoginPage;
+                    LoginPage lp = new LoginPage();
+                    lp.login_page();
+                }
+                case 3 -> {
+                    System.out.println("Thank you for choosing DollarsBank, goodbye!");
+                    System.exit(0);
+                }
+                default -> System.out.println("Sorry but the number you chose was not in the menu!");
             }
-            System.out.println("The number chosen was: " + chosen_number);
-
-        }else{
-            System.out.println("Sorry but the number you chose was not in the menu!");
         }
         return chosen_number;
     }

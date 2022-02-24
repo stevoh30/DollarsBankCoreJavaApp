@@ -11,27 +11,42 @@ public class DollarsBankApplication {
         Test();
         LoginMenu lm = new LoginMenu();
 
-        while(lm.login_page() != 3){
-            lm.login_page();
+        while (lm.welcome_page() != 3) {
+            lm.welcome_page();
         }
     }
-    // Testing
-    public static void Test(){
-        Customer c = new Customer("Stephen",
-                "Renton",
-                "505-0050",
-                "Stevoh",
-                "Password",
-                500, new PriorityQueue<String>());
+// <<<<<<< HEAD
+//     // Testing
+//     public static void Test(){
+// =======
 
-        c.deposit(250);
-        c.withdraw(10000);
-        c.withdraw(250);
-        c.balanceHistory();
-        c.ToString();
-    }
+//     //Testing
+//     public static void Test() {
+// >>>>>>> 2c2b1eb1ecda8acde95f5bad807bdcd4b52038b2
+//         Customer c = new Customer("Stephen",
+//                 "Renton",
+//                 "505-0050",
+//                 "Stevoh",
+//                 "Password",
+// <<<<<<< HEAD
+//                 500, new PriorityQueue<String>());
 
+//         c.deposit(250);
+//         c.withdraw(10000);
+//         c.withdraw(250);
+//         c.balanceHistory();
+//         c.ToString();
+//     }
+
+// =======
+//                 500, new PriorityQueue<>());
+
+// //        c.deposit(250);
+// //        c.withdraw(10000);
+// //        c.withdraw(250);
+// //        c.balanceHistory();
+// //        c.ToString();
+//     }
+// >>>>>>> 2c2b1eb1ecda8acde95f5bad807bdcd4b52038b2
 }
-
-
 
