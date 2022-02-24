@@ -40,6 +40,7 @@ public class Customer {
         }
     }
 
+    // allows methods to be accessible through customer class
     public void deposit(double amount){
         customerSavings.deposit(amount);
     }
