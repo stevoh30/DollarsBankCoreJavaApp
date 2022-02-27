@@ -4,6 +4,7 @@ package dollarsBankConsoleView;
 import java.util.Arrays;
 import java.util.Scanner;
 import dollarsBankConsoleView.LoginPage;
+import dollarsBankConsoleView.AccountCreate;
 
 public class LoginMenu {
 
@@ -20,10 +21,11 @@ public class LoginMenu {
         for (int i = 0; i < login_menu_number.length; i++) {
             System.out.println(login_menu_number[i] + ". " + login_menu[i] + ";");
         }
-        System.out.println("Choose a number(1,2 or 3):" );
+        System.out.print("Choose a number(1,2 or 3):" );
 
         //get user's choice;
         int chosen_number = scanner.nextInt();
+
         //check if user's input is in the menu;
         int result = Arrays.binarySearch(login_menu_number, chosen_number);
         boolean check_number = result > -1 ;
@@ -32,12 +34,17 @@ public class LoginMenu {
             //if user selected 1 or 2 at the menu:
             switch (chosen_number) {
                 case 1 ->
-                        //linked to create account page;
-                        System.out.println("Creating a new account here::::::: ");
+                        { //linked to create account page;
+                            AccountCreate accountCreate = new AccountCreate();
+                            accountCreate.DeserializeCustomer();
+                            System.out.println();
+                            break;
+                        }
                 case 2 -> {
                     //execute LoginPage;
                     LoginPage lp = new LoginPage();
                     lp.login_page();
+                    break;
                 }
                 case 3 -> {
                     System.out.println("Thank you for choosing DollarsBank, goodbye!");
