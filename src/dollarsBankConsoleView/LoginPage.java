@@ -22,15 +22,10 @@ public class LoginPage {
         String password = scanner.nextLine();
 
         // use controller to check if they're valid;
-        boolean result = dbc.login_check(id, password);
+        boolean result;
+//        = dbc.login_check(id, password);
 
         // if valid:
-        if(result){
-            //do something;
-
-        }else{
-            // do something;
-        }
 
     }
 }
