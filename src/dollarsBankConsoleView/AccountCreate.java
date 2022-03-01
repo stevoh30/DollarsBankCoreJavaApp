@@ -1,5 +1,6 @@
 package dollarsBankConsoleView;
 
+import dollarsbankController.DollarsBankController;
 import dollarsbankModel.Customer;
 import java.util.*;
 
@@ -23,35 +24,34 @@ public class AccountCreate {
             inner:
             switch ((String) mapElement.getKey()) {
                 case "password" -> {
-                        System.out.print("Enter Your Password: ");
-                        String password = scanner.nextLine();
-                        System.out.print("Confirm Your Password: ");
-                        String confirmed = scanner.nextLine();
+                    System.out.print("Enter Your Password: ");
+                    String password = scanner.nextLine();
+                    System.out.print("Confirm Your Password: ");
+                    String confirmed = scanner.nextLine();
+                    if (checkPassword(password, confirmed)) {
+                        System.out.println("Passwords match! ");
+                        // put the password into the new_customer hash map;
+                        new_customer.put((String) mapElement.getKey(), password);
 
-                        if (checkPassword(password, confirmed)) {
-                            System.out.println("Passwords match! ");
-                            new_customer.put((String) mapElement.getKey(), password);
-
-                        } else {
-                            System.out.println("Now let's start over! ");
-                            System.out.println("==============================================================");
-                            startOver();
-                        }
+                    } else {
+                        startOver();
                     }
+                }
                 case "initial_balance" ->{
-                    System.out.print("Enter Your Initial Balance(e.g. 1023.23): ");
-                    Double initial = scanner.nextDouble();
-                    new_customer.put((String) mapElement.getKey(),initial);
-
+                    try {
+                        System.out.print("Enter Your Initial Balance(e.g. 1023.23): ");
+                        Double initial = scanner.nextDouble();
+                        new_customer.put((String) mapElement.getKey(), initial);
+                    } catch (InputMismatchException e){
+                        System.out.println("Make Sure You Enter a Number;");
+                    }
                 }
                 case "id" ->{
-                    System.out.print("Enter Your Preferred ID in three digits(e.g. 101): ");
+                    System.out.print("Enter Your Preferred ID for Login(e.g. 'Stevoh' for 'Steven'): ");
                     String id = scanner.nextLine();
                     if(checkId(id)){
                         new_customer.put((String)mapElement.getKey(), id);
                     }else{
-                        System.out.println("ID has been taken! Try another one! Now let's start over! ");
-                        System.out.println("==============================================================");
                         startOver();
                     }
                 }
@@ -70,30 +70,51 @@ public class AccountCreate {
         if(pwd.equals(confirmedPwd) && pwd.length() > 3){
             return true;
         }else{
-            System.out.println("Passwords Do Not Match or Less Than 5 Characters! ");
+            System.out.println("Passwords Do Not Match or Less Than 4 Characters! ");
         }
         return false;
     }
-    public boolean checkId(String id){
 
-        //code to be implemented here:
+
+    public boolean checkId(String id){
+        DollarsBankController dbc = new DollarsBankController();
+        ArrayList all_customers = dbc.ReadCustomer();
+
+        //check if id exists;
+        for(int i =0; i<dbc.ReadCustomer().size(); i++){
+            Map o = (HashMap)all_customers.get(i);
+            if(o.get("id").equals(id)){
+                System.out.println("++++ Id has been taken, please enter a new one +++ ");
+                return false;
+            }
+        }
+
+        //check id length;
+        if(id.length() < 2 || id.isEmpty()){
+            System.out.println("Preferred id has to be more than 2 character;");
+            return false;
+        }
+
         return true;
     }
 
     public void startOver(){
+        System.out.println("Now let's start over! ");
+        System.out.println("==============================================================");
         createAccount();
     }
 
     public void DeserializeCustomer(){
         Map map = createAccount();
 
-        Customer customer = new Customer(map.get("name").toString(),
-                map.get("address").toString(),
-                map.get("contactNumber").toString(),
-                map.get("id").toString(),
-                map.get("password").toString(),
+        Customer customer = new Customer((String)map.get("name"),
+                (String) map.get("address"),
+                (String)map.get("contactNumber"),
+                (String)map.get("id"),
+                (String)map.get("password"),
                 (Double)map.get("initial_balance"));
-        System.out.println(customer);
+
+        customer.ToString();
         System.out.println("Created New Account Successfully! Thank You for Choosing DollarsBank! ");
     }
 }
