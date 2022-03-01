@@ -3,10 +3,10 @@ package dollarsBankConsoleView;
 
 import java.util.Arrays;
 import java.util.Scanner;
-import dollarsBankConsoleView.LoginPage;
-import dollarsBankConsoleView.AccountCreate;
+import dollarsbankController.DollarsBankController;
 
 public class LoginMenu {
+    DollarsBankController dbc = new DollarsBankController();
 
     public int welcome_page(){
         //initialize menu
@@ -33,19 +33,8 @@ public class LoginMenu {
         if(check_number){
             //if user selected 1 or 2 at the menu:
             switch (chosen_number) {
-                case 1 ->
-                        { //linked to create account page;
-                            AccountCreate accountCreate = new AccountCreate();
-                            accountCreate.DeserializeCustomer();
-                            System.out.println();
-                            break;
-                        }
-                case 2 -> {
-                    //execute LoginPage;
-                    LoginPage lp = new LoginPage();
-                    lp.login_page();
-                    break;
-                }
+                case 1 -> dbc.fetchAccountCreate();
+                case 2 -> dbc.fetchLoginPage();
                 case 3 -> {
                     System.out.println("Thank you for choosing DollarsBank, goodbye!");
                     System.exit(0);
