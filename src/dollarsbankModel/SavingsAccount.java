@@ -11,19 +11,19 @@ public class SavingsAccount extends Account{
         super(balance, balanceHistory);
     }
     //get local time;
-    LocalDateTime now = LocalDateTime.now();
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
-    String time = dtf.format(now);
+//    LocalDateTime now = LocalDateTime.now();
+//    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
+//    String time = dtf.format(now);
     // Overridden Methods (Abstract)
     // Deposit if amount is greater than 0
     @Override
     public void deposit(double amount) {
         if(amount > 0){
             balance += amount;
-            System.out.printf("%s Amount of %s applied to account; Balance: %.2f %n", time, amount,balance);
+            System.out.printf(" Amount of %s applied to account; Balance: %.2f %n", amount,balance);
 
             //adds transaction to queue
-            addTransaction(String.format("%s Deposit: %s; Balance: %.2f %n", time, amount, balance)); // added balance into the transaction history.
+            addTransaction(String.format(" Deposit: %s; Balance: %.2f %n", amount, balance)); // added balance into the transaction history.
         }
         else{
             System.out.println("A negative amount cannot be deposited");
@@ -36,9 +36,9 @@ public class SavingsAccount extends Account{
     public void withdraw(double amount) {
         if(amount > 0 && amount <= balance){
             balance -= amount;
-            System.out.printf("%s Amount of %s has been withdrawn; Balance: %.2f %n", time, amount, balance);
+            System.out.printf(" Amount of %s has been withdrawn; Balance: %.2f %n",  amount, balance);
             //adds transaction to queue
-            addTransaction(String.format("%s Withdrawn: %s; Balance: %.2f %n", time, amount, balance));
+            addTransaction(String.format(" Withdrawn: %s; Balance: %.2f %n", amount, balance));
         }
         else{
             System.out.println("Amount cannot be withdrawn from account");
