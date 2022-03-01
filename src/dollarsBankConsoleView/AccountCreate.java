@@ -2,10 +2,14 @@ package dollarsBankConsoleView;
 
 import dollarsbankController.DollarsBankController;
 import dollarsbankModel.Customer;
+import dollarsbankModel.DataSearch;
+import dollarsbankModel.SavingsAccount;
+
 import java.util.*;
 
-
 public class AccountCreate {
+    DollarsBankController dbc = new DollarsBankController();
+    DataSearch ds = new DataSearch(dbc.ReadCustomer());
 
     public Map createAccount() {
         Scanner scanner = new Scanner(System.in);
@@ -17,7 +21,6 @@ public class AccountCreate {
         for (String key : keys) {
             new_customer.put(key, "");
         }
-
         //traverse through the hashmap;
         outer:
         for (Map.Entry mapElement : new_customer.entrySet()) {
@@ -49,7 +52,8 @@ public class AccountCreate {
                 case "id" ->{
                     System.out.print("Enter Your Preferred ID for Login(e.g. 'Stevoh' for 'Steven'): ");
                     String id = scanner.nextLine();
-                    if(checkId(id)){
+                    //use checkId method in DataSearch class;
+                    if(ds.checkId(id)){
                         new_customer.put((String)mapElement.getKey(), id);
                     }else{
                         startOver();
@@ -75,44 +79,22 @@ public class AccountCreate {
         return false;
     }
 
-
-    public boolean checkId(String id){
-        DollarsBankController dbc = new DollarsBankController();
-        ArrayList all_customers = dbc.ReadCustomer();
-
-        //check if id exists;
-        for(int i =0; i<dbc.ReadCustomer().size(); i++){
-            Map o = (HashMap)all_customers.get(i);
-            if(o.get("id").equals(id)){
-                System.out.println("++++ Id has been taken, please enter a new one +++ ");
-                return false;
-            }
-        }
-
-        //check id length;
-        if(id.length() < 2 || id.isEmpty()){
-            System.out.println("Preferred id has to be more than 2 character;");
-            return false;
-        }
-
-        return true;
-    }
-
     public void startOver(){
         System.out.println("Now let's start over! ");
         System.out.println("==============================================================");
-        createAccount();
+        dbc.fetchAccountCreate();
     }
 
-    public void DeserializeCustomer(){
+    public void deserializeCustomer(){
         Map map = createAccount();
-
         Customer customer = new Customer((String)map.get("name"),
                 (String) map.get("address"),
                 (String)map.get("contactNumber"),
                 (String)map.get("id"),
                 (String)map.get("password"),
-                (Double)map.get("initial_balance"));
+                (Double)map.get("initial_balance"),
+                new PriorityQueue<>()
+        );
 
         customer.ToString();
         System.out.println("Created New Account Successfully! Thank You for Choosing DollarsBank! ");
