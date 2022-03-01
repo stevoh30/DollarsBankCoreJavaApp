@@ -9,6 +9,8 @@ import java.util.*;
 
 public class CustomerAccount {
 
+    // Practice Code - converts class objects into json data
+
     public static void main(String[] args) {
 
         //serialization object -> json;

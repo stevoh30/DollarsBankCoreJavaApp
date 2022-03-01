@@ -1,23 +1,23 @@
 package dollarsBankConsoleView;
 
-import dollarsbankController.DollarsBankController;
 import dollarsbankModel.Customer;
-import dollarsbankModel.DataSearch;
-import dollarsbankModel.SavingsAccount;
+import dollarsbankModel.CustomerServices;
 
 import java.util.*;
 
 public class AccountCreate {
-    DollarsBankController dbc = new DollarsBankController();
-    DataSearch ds = new DataSearch(dbc.ReadCustomer());
 
+    // Class fields
+    CustomerServices cs = new CustomerServices();
+
+    // Why is this a map?
     public Map createAccount() {
         Scanner scanner = new Scanner(System.in);
         Map<String, Object> new_customer = new HashMap<>(6);
         // form the keys;
         String[] keys = {"name", "address", "contactNumber", "id", "password", "initial_balance"};
 
-        //initial an empty hashmap:
+        //initialize an empty hashmap:
         for (String key : keys) {
             new_customer.put(key, "");
         }
@@ -53,7 +53,7 @@ public class AccountCreate {
                     System.out.print("Enter Your Preferred ID for Login(e.g. 'Stevoh' for 'Steven'): ");
                     String id = scanner.nextLine();
                     //use checkId method in DataSearch class;
-                    if(ds.checkId(id)){
+                    if(cs.checkId(id)){
                         new_customer.put((String)mapElement.getKey(), id);
                     }else{
                         startOver();
@@ -82,13 +82,13 @@ public class AccountCreate {
     public void startOver(){
         System.out.println("Now let's start over! ");
         System.out.println("==============================================================");
-        dbc.fetchAccountCreate();
+        createAccount();
     }
 
     public void deserializeCustomer(){
         Map map = createAccount();
         Customer customer = new Customer((String)map.get("name"),
-                (String) map.get("address"),
+                (String)map.get("address"),
                 (String)map.get("contactNumber"),
                 (String)map.get("id"),
                 (String)map.get("password"),
