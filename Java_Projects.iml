@@ -7,10 +7,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-
     <orderEntry type="library" name="groovy-4.0.0" level="project" />
     <orderEntry type="library" name="gson-2.9.0" level="project" />
-
     <orderEntry type="module-library">
       <library name="json">
         <CLASSES>
@@ -25,6 +23,8 @@
     <orderEntry type="library" name="googlecode.json.simple" level="project" />
     <orderEntry type="library" name="fasterxml.jackson.core" level="project" />
     <orderEntry type="library" name="fasterxml.jackson.core.databind" level="project" />
-
+    <orderEntry type="library" name="jackson-core-2.7.5" level="project" />
+    <orderEntry type="library" name="jackson-databind-2.7.5" level="project" />
+    <orderEntry type="library" name="json-simple-1.1.1" level="project" />
   </component>
 </module>

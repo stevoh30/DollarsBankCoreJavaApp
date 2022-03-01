@@ -3,6 +3,8 @@ package dollarsbankController;
 import dollarsBankConsoleView.AccountCreate;
 import dollarsBankConsoleView.LoginMenu;
 import dollarsBankConsoleView.LoginPage;
+import dollarsbankModel.Customer;
+import dollarsbankModel.CustomerServices;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -10,51 +12,26 @@ import org.json.simple.parser.ParseException;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 
 
 public class DollarsBankController {
 
-    //start the app with LoginMenu page and load data into cusomters.
+    ArrayList customers = new ArrayList();
+
+    //start the app with LoginMenu page and load data into customers.
     public void starter(){
         fetchLoginMenu();
-        ArrayList customers = ReadCustomer();
+        CustomerServices cs = new CustomerServices();
+        customers = cs.getCustomers();
     }
 
-    public ArrayList<Object> ReadCustomer(){
-        JSONParser parser = new JSONParser();
-        ArrayList<Object> customers = new ArrayList<>();
-        try(FileReader filereader = new FileReader("user.json")) {
-            Object obj =  parser.parse(filereader);
-            // extract the json arrays;
-            JSONArray array = (JSONArray)obj;
-
-            Iterator iterator = array.iterator();
-
-            while(iterator.hasNext()){
-                //read through array and load them into customers arraylist.
-                customers.add(iterator.next());
-            }
-
-        }catch (FileNotFoundException e){
-            e.printStackTrace();
-        }catch (IOException e){
-            e.printStackTrace();
-        }catch (ParseException e){
-            e.printStackTrace();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return customers;
-    }
-
-    public Map getCustomer(String id){
-        Map<String, Object> customer = new HashMap<>();
-        return customer;
-    }
+//    public Customer getCustomer(String id){
+//        Customer customer = new Customer();
+//        return customer;
+//    }
 
     public void fetchLoginMenu(){
         LoginMenu lm = new LoginMenu();
@@ -70,7 +47,13 @@ public class DollarsBankController {
 
     public void fetchLoginPage(){
         LoginPage lp = new LoginPage();
-        lp.login_page();
+        int returnValue = lp.login_page();
+        if(returnValue ==1){
+            fetchLoginPage();
+        }
+        else{
+            fetchLoginMenu();
+        }
     }
 
 

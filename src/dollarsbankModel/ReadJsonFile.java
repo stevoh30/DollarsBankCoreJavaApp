@@ -11,6 +11,7 @@ import java.io.IOException;
 
 public class ReadJsonFile {
 
+    // Practice Code
     public static void main(String[] arg){
         JSONParser parser = new JSONParser();
 
@@ -22,7 +23,6 @@ public class ReadJsonFile {
             JSONObject jsonObject = (JSONObject)array.get(1);
 
             System.out.println(jsonObject.get("address"));
-
 
         }catch (FileNotFoundException e){
             e.printStackTrace();

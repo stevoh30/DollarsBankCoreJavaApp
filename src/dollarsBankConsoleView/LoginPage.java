@@ -2,16 +2,16 @@ package dollarsBankConsoleView;
 import java.awt.*;
 import java.util.Scanner;
 import dollarsbankController.DollarsBankController;
+import dollarsbankModel.CustomerServices;
 import dollarsbankModel.DataSearch;
 
 public class LoginPage {
 
     //show login page
-    public void login_page(){
+    public int login_page() {
 
         Scanner scanner = new Scanner(System.in);
-        DollarsBankController dbc = new DollarsBankController();
-        DataSearch ds = new DataSearch(dbc.ReadCustomer());
+        CustomerServices cs = new CustomerServices();
 
         // get the user id;
         System.out.println("========================");
@@ -23,23 +23,18 @@ public class LoginPage {
         System.out.print("Enter your user password: ");
         String password = scanner.nextLine();
 
-        if(ds.checkLogin(id, password)){
+        if (cs.checkLogin(id, password)) {
             // should start  the user page (with 6 operations);
             System.out.println("hahah, going into user page...");
-        }else{
+        } else {
             System.out.println("Our Bank Does Not Have a User with ID or Password Entered. ");
             System.out.println("========================");
             System.out.println("Enter 1 to start again or any key to exit to the main menu;");
             Integer x = scanner.nextInt();
-            if(x.equals(1)){
-                dbc.fetchLoginPage();
-            }else{
-                dbc.fetchLoginMenu();
+            if (x.equals(1)) {
+                return 1;
             }
         }
-        ;
+        return 2;
     }
-
-
-
 }

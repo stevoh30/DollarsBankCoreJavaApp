@@ -12,6 +12,7 @@ import java.io.FileWriter;
 
 public class CustomerService {
 
+    //practice Class
     //private fields
     //Customer customers[] = new Customer[]{};
     public List<Customer> customers = new ArrayList<>();
