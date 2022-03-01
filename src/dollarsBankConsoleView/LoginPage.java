@@ -27,6 +27,7 @@ public class LoginPage {
             // should start  the user page (with 6 operations);
             System.out.println("hahah, going into user page...");
         }else{
+            System.out.println("Our Bank Does Not Have a User with ID or Password Entered. ");
             System.out.println("========================");
             System.out.println("Enter 1 to start again or any key to exit to the main menu;");
             Integer x = scanner.nextInt();
