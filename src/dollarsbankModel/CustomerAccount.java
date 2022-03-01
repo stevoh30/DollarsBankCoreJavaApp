@@ -26,19 +26,19 @@ public class CustomerAccount {
                 "Ying Chen",
                 "Maryland",
                 "02",
-                "006",
+                "yc",
                 "abc123",
-                3233
-//                new PriorityQueue<>(){}
+                3233,
+                new PriorityQueue<>(){}
         );
         Customer customer_2 = new Customer(
                 "Stevoh",
                 "Washington",
                 "01",
-                "789",
+                "stev",
                 "abc456",
-                5000
-//                new PriorityQueue<>(){}
+                5000,
+                new PriorityQueue<>(){}
         );
 
         Queue<Object> customerQueue = new LinkedList<>();
@@ -52,7 +52,7 @@ public class CustomerAccount {
             while(!customerQueue.isEmpty()){
                 //using jackson to turn object into map;
                 Map customerMap = objectMapper.convertValue(customerQueue.poll(), Map.class);
-                //put all the hashmap into an arayslist
+                //put all the hashmap into an arraylist
                 customers.add(customerMap);
             }
             gson.toJson(customers, writer);
