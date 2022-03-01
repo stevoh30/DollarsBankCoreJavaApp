@@ -1,10 +1,7 @@
 package dollarsBankConsoleView;
 
-import dollarsbankController.DollarsBankController;
 import dollarsbankModel.Customer;
 import dollarsbankModel.CustomerServices;
-import dollarsbankModel.DataSearch;
-import dollarsbankModel.SavingsAccount;
 
 import java.util.*;
 

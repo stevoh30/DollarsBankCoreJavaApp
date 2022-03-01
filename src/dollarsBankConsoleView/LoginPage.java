@@ -1,9 +1,7 @@
 package dollarsBankConsoleView;
-import java.awt.*;
 import java.util.Scanner;
-import dollarsbankController.DollarsBankController;
+
 import dollarsbankModel.CustomerServices;
-import dollarsbankModel.DataSearch;
 
 public class LoginPage {
 
