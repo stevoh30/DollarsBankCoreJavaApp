@@ -28,18 +28,16 @@ public class Customer {
         customerSavings = new SavingsAccount(balance, queue);
     }
 
-    public Customer(String name, String address, String contactNumber,
-                    String id, String password, double initial_balance ){
-        this.name = name;
-        this.address = address;
-        this.contactNumber = contactNumber;
-        this.id = id;
-        this.password = password;
-        this.initial_balance = initial_balance;
-        customerSavings = new SavingsAccount(initial_balance,new PriorityQueue<>()); // initialize
-    }
-
-
+//    public Customer(String name, String address, String contactNumber,
+//                    String id, String password, double initial_balance ){
+//        this.name = name;
+//        this.address = address;
+//        this.contactNumber = contactNumber;
+//        this.id = id;
+//        this.password = password;
+//        this.initial_balance = initial_balance;
+//        customerSavings = new SavingsAccount(initial_balance,new PriorityQueue<>()); // initialize
+//    }
 
 
     public String getId() {
