@@ -48,7 +48,9 @@ public class AccountCreate {
         double ib = scanner.nextDouble();
 
         Queue<String> q = new LinkedList<>();
-        return new Customer(name,address,contactNumber,id,password,ib,q);
+        Customer cs = new Customer(name,address,contactNumber,id,password,0,q);
+        cs.deposit(ib);
+        return cs;
     }
 
 
@@ -64,7 +66,6 @@ public class AccountCreate {
 
     public void deserializeCustomer(){
         createAccount().ToString();
-        System.out.println();
         System.out.println("Created New Account Successfully! Thank You for Choosing DollarsBank! ");
         System.out.println();
     }
