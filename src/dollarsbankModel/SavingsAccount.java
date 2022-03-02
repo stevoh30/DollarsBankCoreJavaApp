@@ -11,9 +11,9 @@ public class SavingsAccount extends Account{
         super(balance, balanceHistory);
     }
     //get local time;
-//    LocalDateTime now = LocalDateTime.now();
-//    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
-//    String time = dtf.format(now);
+    LocalDateTime now = LocalDateTime.now();
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
+    String time = dtf.format(now);
     // Overridden Methods (Abstract)
     // Deposit if amount is greater than 0
     @Override
@@ -49,7 +49,7 @@ public class SavingsAccount extends Account{
     @Override
     public void transactionHistory(){
         for(String s : balanceHistory){
-            System.out.print("Transaction made -- "+ s );
+            System.out.println("Transaction made -- $"+ s );
         }
     }
 

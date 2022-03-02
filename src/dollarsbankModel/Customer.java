@@ -1,5 +1,6 @@
 package dollarsbankModel;
 
+import java.io.PrintStream;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
@@ -25,19 +26,12 @@ public class Customer {
         this.password = password;
         this.initial_balance = initial_balance; // added initial balance; (customer will be required to enter an initial balance at account create).
         double balance = this.initial_balance; // set a local variable balance for initial balance to pass to;
+
+        //put the initial balance into queue;
+        String first_transaction = String.valueOf(balance);
+        queue.add(first_transaction);
         customerSavings = new SavingsAccount(balance, queue);
     }
-
-//    public Customer(String name, String address, String contactNumber,
-//                    String id, String password, double initial_balance ){
-//        this.name = name;
-//        this.address = address;
-//        this.contactNumber = contactNumber;
-//        this.id = id;
-//        this.password = password;
-//        this.initial_balance = initial_balance;
-//        customerSavings = new SavingsAccount(initial_balance,new PriorityQueue<>()); // initialize
-//    }
 
 
     public String getId() {
@@ -70,16 +64,21 @@ public class Customer {
 
     // Method to print customer information and balance
     public void ToString(){
-        System.out.printf("""
-                        Name: %s
-                        Address: %s
-                        Contact: %s
-                        ID: %s
-                        Password: %s
-                        Initial Balance: $%s
-                        %n""",
-                name, address, contactNumber, id, password,initial_balance );    //instead of customerSavings.getBalance(), I had 'initial_balance';
+        System.out.println("=============================================");
+        PrintStream printf = System.out.printf("""
+                        Name: %s;  Address: %s;  Contact: %s;
+                        ID: %s, Password: %s;
+                        Initial Balance: $%s;
+                        """,
+                name,
+                address,
+                contactNumber,
+                id,
+                password,
+                initial_balance);
+        getCustomerSavings().transactionHistory();
     }
+
 
     // accepts an amount and a customer object to transfer funds
     // between this account and additional customer
