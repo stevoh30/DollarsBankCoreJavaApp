@@ -27,9 +27,6 @@ public class Customer {
         this.initial_balance = initial_balance; // added initial balance; (customer will be required to enter an initial balance at account create).
         double balance = this.initial_balance; // set a local variable balance for initial balance to pass to;
 
-        //put the initial balance into queue;
-        String first_transaction = String.valueOf(balance);
-        queue.add(first_transaction);
         customerSavings = new SavingsAccount(balance, queue);
     }
 
@@ -66,16 +63,15 @@ public class Customer {
     public void ToString(){
         System.out.println("=============================================");
         PrintStream printf = System.out.printf("""
-                        Name: %s;  Address: %s;  Contact: %s;
-                        ID: %s, Password: %s;
-                        Initial Balance: $%s;
+                        Name: %s;  
+                        Address: %s;  Contact: %s;
+                        ID: %s, Password: %s;    
                         """,
                 name,
                 address,
                 contactNumber,
                 id,
-                password,
-                initial_balance);
+                password);
         getCustomerSavings().transactionHistory();
     }
 

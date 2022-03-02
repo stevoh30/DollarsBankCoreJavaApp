@@ -20,7 +20,7 @@ public class SavingsAccount extends Account{
     public void deposit(double amount) {
         if(amount > 0){
             balance += amount;
-            System.out.printf(" Amount of %s applied to account; Balance: %.2f %n", amount,balance);
+            System.out.printf(" Amount of %s applied to account; Balance: %.2f %s %n", amount,balance,time);
 
             //adds transaction to queue
             addTransaction(String.format(" Deposit: %s; Balance: %.2f %n", amount, balance)); // added balance into the transaction history.
