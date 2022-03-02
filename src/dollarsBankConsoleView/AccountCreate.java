@@ -8,7 +8,12 @@ import java.util.*;
 public class AccountCreate {
 
     // Class fields
-    CustomerServices cs = new CustomerServices();
+    CustomerServices cs;
+
+    // Constructor
+    public AccountCreate(CustomerServices cs){
+        this.cs = cs;
+    }
 
     // Why is this a map?
     public Map createAccount() {

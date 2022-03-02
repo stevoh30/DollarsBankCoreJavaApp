@@ -20,11 +20,11 @@ import java.util.Iterator;
 public class DollarsBankController {
 
     ArrayList customers = new ArrayList();
+    CustomerServices cs = new CustomerServices();
 
     //start the app with LoginMenu page and load data into customers.
     public void starter(){
         fetchLoginMenu();
-        CustomerServices cs = new CustomerServices();
         customers = cs.getCustomers();
     }
 
@@ -41,7 +41,7 @@ public class DollarsBankController {
     }
 
     public void fetchAccountCreate(){
-        AccountCreate ac = new AccountCreate();
+        AccountCreate ac = new AccountCreate(cs);
         ac.deserializeCustomer();
     }
 

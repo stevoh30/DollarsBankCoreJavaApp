@@ -1,11 +1,13 @@
 package dollarsbankModel;
 
+import com.google.gson.Gson;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,6 +55,22 @@ public class CustomerServices {
             e.printStackTrace();
         }
         return customers;
+    }
+
+    // Adds customer object to this.array list
+    public void AddCustomerToArrayList(Customer c){
+        this.customers.add(c);
+    }
+
+    //Saves customers arraylist to json file
+    public void SaveCustomersToJson(ArrayList<Customer> customers) throws IOException {
+
+        var gson = new Gson();
+        //save Json Objects to file
+        FileWriter writer = new FileWriter("user.json");
+        gson.toJson(customers, writer);
+        writer.flush();
+        writer.close();
     }
 
     // Validate if id has been used upon account creation
