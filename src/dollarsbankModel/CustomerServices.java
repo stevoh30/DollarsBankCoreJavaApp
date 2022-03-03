@@ -19,14 +19,10 @@ public class CustomerServices {
     // Class fields
     private ArrayList customers = new ArrayList();
 
-    // Constructor
-    public CustomerServices(){
-        this.customers = ReadCustomer();
-    }
 
     // Getter methods for accessing array
     public ArrayList getCustomers() {
-        return customers;
+        return ReadCustomer();
     }
 
     // Loads json data into arraylist
@@ -63,12 +59,12 @@ public class CustomerServices {
     }
 
     //Saves customers arraylist to json file
-    public void SaveCustomersToJson(ArrayList<Customer> customers) throws IOException {
+    public void SaveCustomersToJson() throws IOException {
 
         var gson = new Gson();
         //save Json Objects to file
         FileWriter writer = new FileWriter("user.json");
-        gson.toJson(customers, writer);
+        gson.toJson(this.customers, writer);
         writer.flush();
         writer.close();
     }

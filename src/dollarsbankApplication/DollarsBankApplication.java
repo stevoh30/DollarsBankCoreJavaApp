@@ -20,7 +20,7 @@ public class DollarsBankApplication {
     //     //Test();
     //     LoginMenu lm = new LoginMenu();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         DollarsBankController dbc = new DollarsBankController();
         dbc.starter();
 //        Test();

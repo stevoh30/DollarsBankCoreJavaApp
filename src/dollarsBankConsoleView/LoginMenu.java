@@ -6,8 +6,17 @@ import java.util.Scanner;
 import dollarsbankController.DollarsBankController;
 
 public class LoginMenu {
-    DollarsBankController dbc = new DollarsBankController();
 
+    // class fields
+    private int selectionNumber = 0;
+
+    // get method for accessing selection Number
+    public int getSelectionNumber() {
+        return selectionNumber;
+    }
+
+    // functionality for allowing the user to select various choices
+    // in welcome_page menu
     public int welcome_page(){
         //initialize menu
         int[] login_menu_number = new int[]{1,2, 3};
@@ -33,8 +42,12 @@ public class LoginMenu {
         if(check_number){
             //if user selected 1 or 2 at the menu:
             switch (chosen_number) {
-                case 1 -> dbc.fetchAccountCreate();
-                case 2 -> dbc.fetchLoginPage();
+                case 1 -> {
+                    this.selectionNumber = 1;
+                }
+                case 2 -> {
+                    this.selectionNumber = 2;
+                }
                 case 3 -> {
                     System.out.println("Thank you for choosing DollarsBank, goodbye!");
                     System.exit(0);

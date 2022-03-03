@@ -5,11 +5,18 @@ import dollarsbankModel.CustomerServices;
 
 public class LoginPage {
 
+    // Class fields
+    CustomerServices cs;
+
+    // Login page takes a customer services object when initialized
+    public LoginPage(CustomerServices cs){
+        this.cs = cs;
+    }
+
     //show login page
     public int login_page() {
 
         Scanner scanner = new Scanner(System.in);
-        CustomerServices cs = new CustomerServices();
 
         // get the user id;
         System.out.println("========================");

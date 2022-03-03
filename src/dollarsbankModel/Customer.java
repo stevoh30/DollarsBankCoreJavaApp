@@ -12,21 +12,17 @@ public class Customer {
     private final String contactNumber;
     private final String id;
     private final String password;
-    private final Double initial_balance;
     private final SavingsAccount customerSavings;
 
     // Constructor
 
     public Customer(String name, String address, String contactNumber,
-                    String id, String password, double initial_balance, Queue<String> queue){
+                    String id, String password, double balance, Queue<String> queue){
         this.name = name;
         this.address = address;
         this.contactNumber = contactNumber;
         this.id = id;
         this.password = password;
-        this.initial_balance = initial_balance; // added initial balance; (customer will be required to enter an initial balance at account create).
-        double balance = this.initial_balance; // set a local variable balance for initial balance to pass to;
-
         customerSavings = new SavingsAccount(balance, queue);
     }
 
@@ -51,9 +47,6 @@ public class Customer {
         return contactNumber;
     }
 
-    public Double getInitial_balance() {
-        return initial_balance;
-    }
 
     public SavingsAccount getCustomerSavings() {
         return customerSavings;
