@@ -1,6 +1,8 @@
 package dollarsbankModel;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -9,26 +11,22 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 public class CustomerServices {
 
     // Class fields
     private ArrayList customers = new ArrayList();
 
-
     // Getter methods for accessing array
     public ArrayList getCustomers() {
-        return ReadCustomer();
+        this.customers = ReadCustomer();
+        return this.customers;
     }
 
     // Loads json data into arraylist
     private ArrayList<Object> ReadCustomer(){
         JSONParser parser = new JSONParser();
-        ArrayList<Object> customers = new ArrayList<>();
         try(FileReader filereader = new FileReader("user.json")) {
             Object obj =  parser.parse(filereader);
             // extract the json arrays;
@@ -38,9 +36,8 @@ public class CustomerServices {
 
             while(iterator.hasNext()){
                 //read through array and load them into customers arraylist.
-                customers.add(iterator.next());
+                this.customers.add(iterator.next());
             }
-
         }catch (FileNotFoundException e){
             e.printStackTrace();
         }catch (IOException e){
@@ -54,16 +51,23 @@ public class CustomerServices {
     }
 
     // Adds customer object to this.array list
-    public void AddCustomerToArrayList(Customer c){
-        this.customers.add(c);
+    public ArrayList AddCustomerToArrayList(Customer c){
+        //retrieve all the customers existed;
+//        this.customers = getCustomers();
+        ObjectMapper objectMapper = new ObjectMapper();
+        Map customerMap = objectMapper.convertValue(c, Map.class);
+
+        //add one new account info into customers array;
+        this.customers.add(customerMap);
+        return this.customers;
     }
 
-    //Saves customers arraylist to json file
+    //Saves customers arraylist to json file; (checked)
     public void SaveCustomersToJson() throws IOException {
-
-        var gson = new Gson();
+        var gson = new GsonBuilder().setPrettyPrinting().create();
         //save Json Objects to file
         FileWriter writer = new FileWriter("user.json");
+
         gson.toJson(this.customers, writer);
         writer.flush();
         writer.close();

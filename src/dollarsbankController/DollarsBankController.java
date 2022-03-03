@@ -8,7 +8,6 @@ import dollarsbankModel.CustomerServices;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 
 public class DollarsBankController {
@@ -19,26 +18,31 @@ public class DollarsBankController {
 
     //start the app with LoginMenu page and load data into customers.
     public void starter() throws IOException {
+        this.customers= cs.getCustomers();
         fetchLoginMenu();
-        customers = cs.getCustomers();
     }
-
-//    public Customer getCustomer(String id){
-//        Customer customer = new Customer();
-//        return customer;
-//    }
 
     // starting login menu allowing the user to login
     // or create account - directing them to view
     public void fetchLoginMenu() throws IOException {
         LoginMenu lm = new LoginMenu();
-        while (lm.welcome_page() != 3) {
+
+        //to test what data has been loaded to when app's running.
+        System.out.println(this.customers);
+
+        while (lm.welcome_page()!= 3) {
             if(lm.getSelectionNumber() == 1){
                 fetchAccountCreate();
             }
             else if(lm.getSelectionNumber() ==2){
                 fetchLoginPage();
             }
+        }
+        if(lm.getSelectionNumber() == 3){
+            // before exit the app, save all info in customers array to json file;
+//            cs.SaveCustomersToJson();
+            System.out.println("Thank you for choosing DollarsBank, goodbye!");
+            System.exit(0);
         }
     }
 
@@ -47,14 +51,13 @@ public class DollarsBankController {
     public void fetchAccountCreate() throws IOException {
         AccountCreate ac = new AccountCreate(cs);
         Customer customer = ac.deserializeCustomer();
+        // Code doesn't work at the moment. (it works now)
+        cs.AddCustomerToArrayList(customer);
 
-        // Code doesn't work at the moment.
-//        cs.AddCustomerToArrayList(customer);
-//
 //        //add exception handling
-//        cs.SaveCustomersToJson();
+        cs.SaveCustomersToJson();
 //        //repopulate array
-//        this.customers = cs.getCustomers();
+        this.customers = cs.getCustomers();
     }
 
     // allows user to transition login page
@@ -69,8 +72,6 @@ public class DollarsBankController {
             fetchLoginMenu();
         }
     }
-
-
 }
 
 

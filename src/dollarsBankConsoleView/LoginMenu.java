@@ -36,25 +36,9 @@ public class LoginMenu {
         int chosen_number = scanner.nextInt();
 
         //check if user's input is in the menu;
-        int result = Arrays.binarySearch(login_menu_number, chosen_number);
-        boolean check_number = result > -1 ;
-
-        if(check_number){
-            //if user selected 1 or 2 at the menu:
-            switch (chosen_number) {
-                case 1 -> {
-                    this.selectionNumber = 1;
-                }
-                case 2 -> {
-                    this.selectionNumber = 2;
-                }
-                case 3 -> {
-                    System.out.println("Thank you for choosing DollarsBank, goodbye!");
-                    System.exit(0);
-                }
-                default -> System.out.println("Sorry but the number you chose was not in the menu!");
-            }
-        }
+//        int result = Arrays.binarySearch(login_menu_number, chosen_number);
+//        boolean check_number = result > -1 ;
+        this.selectionNumber =  chosen_number;
         return chosen_number;
     }
 }
