@@ -10,8 +10,14 @@ import java.util.*;
 public class AccountCreate {
 
     // Class fields
-    CustomerServices cs = new CustomerServices();
+    CustomerServices cs;
 
+    // Constructor - takes in customer services object when initialized
+    public AccountCreate(CustomerServices cs){
+        this.cs = cs;
+    }
+
+    // Create account functionality and user prompts for information
     public Customer createAccount() {
         Scanner scanner = new Scanner(System.in);
 
@@ -48,12 +54,12 @@ public class AccountCreate {
         double ib = scanner.nextDouble();
 
         Queue<String> q = new LinkedList<>();
-        Customer cs = new Customer(name,address,contactNumber,id,password,0,q);
-        cs.deposit(ib);
-        return cs;
+        Customer customer = new Customer(name,address,contactNumber,id,password,0,q);
+        customer.deposit(ib);
+        return customer;
     }
 
-
+    // validates password information before creating account
     public boolean checkPassword(String pwd, String confirmedPwd){
 
         if(pwd.equals(confirmedPwd) && pwd.length() > 3){
@@ -64,9 +70,11 @@ public class AccountCreate {
         return false;
     }
 
-    public void deserializeCustomer(){
-        createAccount().ToString();
+    public Customer deserializeCustomer(){
+//        createAccount().toString();
+        Customer c = createAccount();
         System.out.println("Created New Account Successfully! Thank You for Choosing DollarsBank! ");
         System.out.println();
+        return c;
     }
 }
