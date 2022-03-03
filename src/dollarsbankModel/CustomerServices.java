@@ -63,7 +63,7 @@ public class CustomerServices {
 
         var gson = new Gson();
         //save Json Objects to file
-        FileWriter writer = new FileWriter("user.json");
+        FileWriter writer = new FileWriter("data.json");
         gson.toJson(this.customers, writer);
         writer.flush();
         writer.close();

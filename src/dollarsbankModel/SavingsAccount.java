@@ -11,16 +11,16 @@ public class SavingsAccount extends Account{
         super(balance, balanceHistory);
     }
     //get local time;
-    LocalDateTime now = LocalDateTime.now();
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
-    String time = dtf.format(now);
+//    LocalDateTime now = LocalDateTime.now();
+//    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
+//    String time = dtf.format(now);
     // Overridden Methods (Abstract)
     // Deposit if amount is greater than 0
     @Override
     public void deposit(double amount) {
         if(amount > 0){
             balance += amount;
-            System.out.printf(" Amount of %s applied to account; Balance: %.2f %s %n", amount,balance,time);
+            System.out.printf(" Amount of %s applied to account; Balance: %.2f %n", amount,balance);
 
             //adds transaction to queue
             addTransaction(String.format(" Deposit: %s; Balance: %.2f %n", amount, balance)); // added balance into the transaction history.

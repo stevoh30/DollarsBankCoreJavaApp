@@ -48,8 +48,11 @@ public class DollarsBankController {
         AccountCreate ac = new AccountCreate(cs);
         Customer customer = ac.deserializeCustomer();
 
-        // Code doesn't work at the moment.
 //        cs.AddCustomerToArrayList(customer);
+//
+//        for(Object c : customers){
+//            System.out.println(c.toString());
+//        }
 //
 //        //add exception handling
 //        cs.SaveCustomersToJson();
