@@ -1,1 +1,37 @@
-[{"name":"fish","address":"fish","contactNumber":"fish","id":"fish","password":"fish","customerSavings":{"balance":500.0,"balanceHistory":[" Deposit: 500.0; Balance: 500.00 \r\n"]}}]
+
+
+[
+  {
+    "password": "abc123",
+    "address": "Maryland",
+    "name": "Ying Chen",
+    "contactNumber": "02",
+    "customerSavings": {
+      "balance": 3233.0
+    },
+    "id": "006",
+    "initial_balance": 3233.0
+  },
+  {
+    "password": "abc456",
+    "address": "Washington",
+    "name": "Stevoh",
+    "contactNumber": "01",
+    "customerSavings": {
+      "balance": 5000.0
+    },
+    "id": "789",
+    "initial_balance": 5000.0
+  },
+  {
+    "name": "Pen",
+    "address": "Frier",
+    "contactNumber": "283923",
+    "id": "ui",
+    "password": "9999",
+    "customerSavings": {
+      "balance": 80.0
+    }
+  }
+]
+
